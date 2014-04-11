@@ -1,0 +1,19 @@
+class TEST_CHAR is
+   main:INT is
+      x:INT:=83;
+
+      typecase x
+      when INT then #OUT + TEST_CHAR::get_char(x);
+      when STR then #OUT + x;
+      when CHAR then #OUT + x;
+      when BOOL then if x then #OUT + "true" else #OUT + "false" end
+      end
+   end
+
+   get_char(code:INT):CHAR is
+      if code = 35 then return '\043'
+      elsif code = 9 then return '\t'
+      else return 'error'
+      end
+   end
+end

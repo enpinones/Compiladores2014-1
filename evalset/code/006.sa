@@ -1,0 +1,11 @@
+class STRING_TESTS is
+
+   main:INT is
+      str:STR:= "este es un string simple";
+      str:= "un string" "separado";
+      str:= "\a\tstring que utiliza s\355mbolos escapados\n\n\v";
+      str:= "otro ejemplo "
+	    "complejo (si, un string"     	" puede abarcar m\341s de una l\355nea)";
+   end
+end
+      

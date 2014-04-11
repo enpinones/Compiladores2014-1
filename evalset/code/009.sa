@@ -1,0 +1,8 @@
+class INCLUDE_TEST < STR is
+   include INT;
+
+   main:INT is
+      return -732871382;
+   end
+end
+

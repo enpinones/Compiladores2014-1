@@ -1,0 +1,34 @@
+class LIST{T} is
+   attr current:T;
+   private attr next:SAME;
+
+   create(first:T):LIST{T} is
+      this.current := first;
+      this.next := void;
+   end
+
+   cons(other:LIST{T}) is
+      this.next := other;
+   end
+
+   next!:T is
+      aux:SAME:=self;
+      loop
+	 if void(current) then quit
+	 else yield aux; aux:=aux.next; 
+	 end
+      end
+   end
+end
+
+
+class MAIN is
+   main:INT is
+      list1:LIST{INT}:= #LIST{INT}(3);
+      x:INT:=0;
+      loop
+	 x::=list1.next!;
+	 #OUT + x;
+      end
+   end
+end

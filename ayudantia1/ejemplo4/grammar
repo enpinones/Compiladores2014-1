@@ -1,0 +1,10 @@
+Ejemplo de práctica
+
+Tokens: id|(|)|:-|.|,
+id: [a-zA-Z]+
+
+gramática:
+
+pred -> id([id{,id}])
+rule -> pred :- [pred{,pred}].
+
