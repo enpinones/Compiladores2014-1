@@ -1,6 +1,0 @@
-class HELLO is
-   main is
-      #OUT + "hello world!!";
-      return;
-   end
-end

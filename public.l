@@ -1,5 +1,4 @@
 // -*- mode: java -*-
-
 %%
 
 %class Scanner
@@ -13,11 +12,12 @@
 %int
 
 %{
-    public static final int SYMBOL = 2;
     public static final int KEYWORD = 1;
+    public static final int SYMBOL = 2;
 
     private Object yylval;
     private int type;
+    /* posiciones para strings y chars */
     public int beginChar, beginLine, beginCol;
 
     private StringBuffer realString;
@@ -78,7 +78,9 @@
 
     public void yyerror(String msg)
     {
+	System.err.println(msg);
     }
+
     private void setSymbol(String str) 
     {
 	this.type = SYMBOL;
@@ -154,13 +156,13 @@ WHITESPACE=[ \n\r\t]+
 ">=" { setSymbol( ">=" );return Parser.GREATEREQ; }
 "/=" { setSymbol( "/=" );return Parser.DISTINCT; }
 ":=" { setSymbol( ":=" );return Parser.ASSIGN; }
-"::" { setSymbol( "::" );return Parser.DBLCOLON; }
 ":" { setSymbol( ":" );return Parser.COLON; }
+"::" / [^=] { setSymbol( "::" );return Parser.DBLCOLON; }
 "=" { setSymbol( "=" );return Parser.EQUAL; }
 "~" { setSymbol( "~" );return Parser.TILDE; }
 "#" { setSymbol( "#" );return Parser.SHARP; }
 
-"true" { 
+"true" {
     yylval = true;
     return Parser.BOOL; 
 }
@@ -170,12 +172,12 @@ WHITESPACE=[ \n\r\t]+
     return Parser.BOOL;
 }
 
--?[0-9]+ { 
+-?[0-9]+ {
     yylval = Integer.parseInt(yytext()); 
     return Parser.INT; 
 }
 
-[A-Z][A-Z_]* { 
+[A-Z][A-Z_]* {
     yylval = yytext(); 
     return Parser.UPCASE_ID; 
 }
@@ -193,6 +195,7 @@ WHITESPACE=[ \n\r\t]+
 <YYINITIAL> \' {
     this.stCond = CHAR;
     this.beginCol = yycolumn;
+    this.beginChar = yychar;
     this.printableString.setLength(0);
     yybegin(CHAR);
 }
@@ -296,7 +299,8 @@ v {
 
 }
 
-<YYINITIAL,CHAR,STRING,CHAR_END> [^] {
+ /* <*> [^] { */
+<YYINITIAL,CHAR,STRING,CHAR_END,ESCAPED> [^] {
     yybegin(YYINITIAL);
     return Parser.ERROR;
 }
