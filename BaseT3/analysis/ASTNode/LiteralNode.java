@@ -16,10 +16,14 @@ public class LiteralNode extends Node
 
     public String toString()
     {
-	return "literal "+type+" "+value+" <"+type+">";
+    	return "literal "+type+" "+value+" <"+GetType()+">";
     }
     public String GetType()
     {
+    	if(type.equals("STR"))
+    	{
+    		return "STRING";
+    	}
     	return type;
     }
 }

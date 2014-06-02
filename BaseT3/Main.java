@@ -39,6 +39,7 @@ public class Main
 			}
 		}catch(FileNotFoundException fnf){
 			System.err.print("Output file not found\n");
+			
 		}
 
 	}

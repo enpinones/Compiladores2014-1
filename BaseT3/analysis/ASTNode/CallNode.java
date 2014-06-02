@@ -13,10 +13,13 @@ public class CallNode extends Node
 
 	public String toString()
 	{
-		return "call "+id+" <"+GetType()+">";
+		String opType = GetType();
+    	if(opType.equals("INVALID"))
+    		return "call "+id+" "+opType;
+		return "call "+id+" <"+opType+">";
 	}
 
-	private String GetType()
+	public String GetType()
 	{
 		//Buscamos en el method scope por el type de id
 		Node importantNode = this;
@@ -46,6 +49,6 @@ public class CallNode extends Node
 			}
 		}
 		
-		return "MISSING :C";
+		return "INVALID";
 	}
 }

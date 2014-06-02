@@ -24,6 +24,15 @@ public class SimpleNode extends Node
 	return "" + this.label +""+GetOperatorType();
     }
     
+    public String GetType()
+    {
+    	String result = GetOperatorType();
+    	result = result.replace('<', ' ');
+    	result = result.replace('>', ' ');
+    	result = result.trim();
+    	return result;
+    }
+    
     public String GetOperatorType()
     {
     	

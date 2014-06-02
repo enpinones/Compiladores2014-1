@@ -16,7 +16,10 @@ public class LocalNode extends Node
 
 	public String toString()
 	{
-		return "local "+id+" <"+GetType()+">";
+		String opType = GetType();
+    	if(opType.equals("INVALID"))
+    		return "local "+id+" "+opType;
+		return "local "+id+" <"+opType+">";
 	}
 
 	private String GetType()
@@ -29,7 +32,7 @@ public class LocalNode extends Node
 			MethodScope ms = (MethodScope)(importantNode.getScope().getParent());
 			//Revisamos la superclass para ver si está el tipo del id actual
 			Variable var = ms.getSclass().attrs.get(id);
-			if(var != null)
+			if(var != null && var.getType() != null)
 			{
 				//Si tiene devolvemos
 				return var.type;
@@ -46,7 +49,7 @@ public class LocalNode extends Node
 				for(int i=0;i<args.size();i++)
 				{
 					Variable var = (Variable)args.get(i);
-					if(var.getName().equals(id))
+					if(var.getName().equals(id) && var.getType() != null)
 					{
 						return var.getType();
 					}
@@ -54,6 +57,20 @@ public class LocalNode extends Node
 				}
 			}
 		}
+
+		//Sino retornamos el tipo de scope que estamos
+		importantNode = this;
+		if(importantNode.getScope() instanceof VarScope)
+		{
+			VarScope vs = (VarScope)importantNode.getScope();
+			//Si no es vacio
+			Variable var = vs.getVar(id);
+			if(var != null && var.getType() != null)
+			{
+				return var.getType();
+			}
+		}
+
 		//Sino reviamos los hermanos por Nodos literales
 		importantNode = this;
 		while(importantNode.rightBrotherp())
@@ -64,31 +81,20 @@ public class LocalNode extends Node
 				LiteralNode litNode = (LiteralNode)importantNode;
 				return litNode.GetType();
 			}
-			else if (importantNode instanceof LocalNode)
-			{
-				//Se llega aqui en caso de que el padre de una operación binaria, comprobamos de que tipo es
-				if(importantNode.getParent() instanceof BinaryNode)
-				{
-					BinaryNode binNode = (BinaryNode)importantNode.getParent();
-					return binNode.GetOperatorType();	
-				}
-			}
 		}
-		//Sino retornamos el tipo de scope que estamos
-		importantNode = this;
-		if(importantNode.getScope() instanceof VarScope)
+		//Revisamos la clase
+		
+		//Revisamos si es hijo de una operación binaria
+		if (importantNode instanceof LocalNode)
 		{
-			VarScope vs = (VarScope)importantNode.getScope();
-			//Si no es vacio
-			Variable var = vs.getVar(id);
-			if(var != null)
+			//Se llega aqui en caso de que el padre de una operación binaria, comprobamos de que tipo es
+			if(importantNode.getParent() instanceof BinaryNode)
 			{
-				return var.getType();
+				BinaryNode binNode = (BinaryNode)importantNode.getParent();
+				return binNode.GetOperatorType();	
 			}
 		}
-
-		System.out.println(importantNode.getScope());
-		return "MISSING :C";	
+		return "INVALID";	
 	}
 
 	public Node FindAssignNodeWithType(Node node)
