@@ -1,0 +1,41 @@
+8: error: used `INT' type value where BOOL is required
+12: error: `not' not defined.
+12: error: used `null' type value where BOOL is required
+12: error: used `null' type value where BOOL is required
+12: error: used `null' type value where BOOL is required
+program
+|-- class AUX
+|   |-- method not : STR
+|       |-- body
+|           |-- return
+|               |-- literal BOOL false <BOOL>
+|-- class COND_ERRORS
+    |-- method main
+        |-- arguments
+        |   |-- x:INT
+        |-- body
+            |-- if
+            |   |-- condition
+            |       |-- literal INT 1 <INT>
+            |       |-- body
+            |           |-- binary + <OUT>
+            |               |-- create OUT <OUT>
+            |               |-- literal STR "uno" <STRING>
+            |-- assign var2:STR
+            |   |-- literal BOOL false <BOOL>
+            |-- if
+                |-- condition
+                    |-- or INVALID
+                    |   |-- and INVALID
+                    |   |   |-- call is_zero <BOOL>
+                    |   |   |   |-- caller
+                    |   |   |       |-- literal INT 1 <INT>
+                    |   |   |-- unary ~ INVALID
+                    |   |       |-- local var2 <STR>
+                    |   |-- binary < <BOOL>
+                    |       |-- literal INT 5 <INT>
+                    |       |-- local x <INT>
+                    |-- body
+                        |-- binary + <OUT>
+                            |-- create OUT <OUT>
+                            |-- literal STR "dos" <STRING>

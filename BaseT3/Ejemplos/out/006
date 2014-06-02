@@ -1,0 +1,38 @@
+2: error: `var2' not defined.
+4: error: used `null' type value where BOOL is required
+13: error: `not_defined' not defined.
+program
+|-- class FIRST_ERROR
+    |-- method main
+        |-- body
+            |-- assign var
+            |   |-- local var2 INVALID
+            |-- assign var2:INT
+            |   |-- literal INT 55 <INT>
+            |-- if
+            |   |-- condition
+            |       |-- binary < INVALID
+            |       |   |-- local var INVALID
+            |       |   |-- local var2 <INT>
+            |       |-- body
+            |           |-- binary + <OUT>
+            |               |-- create OUT <OUT>
+            |               |-- literal STR "menor" <STRING>
+            |-- loop
+            |   |-- while
+            |   |   |-- binary < <BOOL>
+            |   |       |-- local var2 <INT>
+            |   |       |-- literal INT 200 <INT>
+            |   |-- binary + <OUT>
+            |   |   |-- create OUT <OUT>
+            |   |   |-- local var2 <INT>
+            |   |-- assign
+            |       |-- local var2 <INT>
+            |       |-- binary + <INT>
+            |           |-- local var2 <INT>
+            |           |-- literal INT 1 <INT>
+            |-- call not_defined INVALID
+                |-- caller
+                |   |-- self <FIRST_ERROR>
+                |-- arguments
+                    |-- local var2 <INT>

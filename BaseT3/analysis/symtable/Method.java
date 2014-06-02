@@ -7,6 +7,7 @@ public class Method
     public String name;
     public String retType;
     public ArrayList<Variable> args;
+    private SClass sclass;
 
     public Method(String name, String rType, boolean isPrivate)
     {
@@ -35,5 +36,13 @@ public class Method
     public int argCount ()
     {
 	return this.args.size();
+    }
+    public void setSclass(SClass sclass)
+    {
+    	this.sclass = sclass;
+    }
+    public SClass getSclass(SClass sclass)
+    {
+    	return sclass;
     }
 }

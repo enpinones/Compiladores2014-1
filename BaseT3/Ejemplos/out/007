@@ -1,0 +1,56 @@
+13: error: incompatible type for argument 0 of `method'
+13: note: expected `CHAR' but argument is of type `INT'
+14: error: too many arguments to method/iterator `method'
+15: error: too few arguments to method/iterator `method'
+21: error: `create' not defined.
+22: error: used `null' type value where BOOL is required
+program
+|-- class PAR_ERRORS
+|   |-- attr private a:INT
+|   |-- method method
+|   |   |-- arguments
+|   |   |   |-- a:CHAR
+|   |   |-- body
+|   |       |-- typecase a
+|   |           |-- CHAR
+|   |           |   |-- binary + <OUT>
+|   |           |       |-- create OUT <OUT>
+|   |           |       |-- call str <STRING>
+|   |           |           |-- caller
+|   |           |               |-- local a <CHAR>
+|   |           |-- else
+|   |               |-- binary + <OUT>
+|   |                   |-- create OUT <OUT>
+|   |                   |-- literal STR "???" <STRING>
+|   |-- method sec_method
+|       |-- body
+|           |-- call method INVALID
+|           |   |-- caller
+|           |   |   |-- self <PAR_ERRORS>
+|           |   |-- arguments
+|           |       |-- literal INT 2 <INT>
+|           |-- call method INVALID
+|           |   |-- caller
+|           |   |   |-- self <PAR_ERRORS>
+|           |   |-- arguments
+|           |       |-- literal CHAR '' <CHAR>
+|           |       |-- literal STR "string" <STRING>
+|           |-- call method INVALID
+|               |-- caller
+|                   |-- self <PAR_ERRORS>
+|-- class MAIN
+    |-- method main
+        |-- body
+            |-- assign var
+            |   |-- create PAR_ERRORS INVALID
+            |-- if
+                |-- condition
+                    |-- binary < INVALID
+                    |   |-- call a INVALID
+                    |   |   |-- caller
+                    |   |       |-- local var INVALID
+                    |   |-- literal INT 5236479 <INT>
+                    |-- body
+                        |-- binary + <OUT>
+                            |-- create OUT <OUT>
+                            |-- literal STR "error" <STRING>

@@ -1,0 +1,64 @@
+5: error: `x' not defined.
+8: error: used `STRING' type value where BOOL is required
+program
+|-- class TEST_CHAR
+    |-- method main : INT
+    |   |-- body
+    |       |-- assign var1:INT
+    |       |   |-- literal INT 83 <INT>
+    |       |-- typecase var1
+    |       |   |-- INT
+    |       |   |   |-- binary + INVALID
+    |       |   |       |-- create OUT <OUT>
+    |       |   |       |-- call get_char INVALID
+    |       |   |           |-- caller
+    |       |   |           |   |-- self <TEST_CHAR>
+    |       |   |           |-- arguments
+    |       |   |               |-- local x INVALID
+    |       |   |-- STR
+    |       |   |   |-- binary + <OUT>
+    |       |   |       |-- create OUT <OUT>
+    |       |   |       |-- local var1 <INT>
+    |       |   |-- CHAR
+    |       |   |   |-- binary + <OUT>
+    |       |   |       |-- create OUT <OUT>
+    |       |   |       |-- local var1 <INT>
+    |       |   |-- BOOL
+    |       |       |-- if
+    |       |           |-- condition
+    |       |           |   |-- literal STR "true" <STRING>
+    |       |           |   |-- body
+    |       |           |       |-- binary + <OUT>
+    |       |           |           |-- binary + <OUT>
+    |       |           |           |   |-- create OUT <OUT>
+    |       |           |           |   |-- literal STR "bool: " <STRING>
+    |       |           |           |-- local var1 <INT>
+    |       |           |-- else
+    |       |               |-- binary + <OUT>
+    |       |                   |-- create OUT <OUT>
+    |       |                   |-- literal STR "false" <STRING>
+    |       |-- return
+    |           |-- literal INT 0 <INT>
+    |-- method get_char : CHAR
+    |   |-- arguments
+    |   |   |-- var1:INT
+    |   |-- body
+    |       |-- if
+    |           |-- condition
+    |           |   |-- binary = <BOOL>
+    |           |   |   |-- local var1 <INT>
+    |           |   |   |-- literal INT 35 <INT>
+    |           |   |-- body
+    |           |       |-- return
+    |           |           |-- literal CHAR '#' <CHAR>
+    |           |-- condition
+    |           |   |-- binary = <BOOL>
+    |           |   |   |-- local var1 <INT>
+    |           |   |   |-- literal INT 9 <INT>
+    |           |   |-- body
+    |           |       |-- return
+    |           |           |-- literal CHAR '	' <CHAR>
+    |           |-- else
+    |               |-- return
+    |                   |-- literal CHAR 'e' <CHAR>
+    |-- include CHAR

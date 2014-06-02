@@ -1,0 +1,153 @@
+18: error: incompatible types when returning type `CHAR' but `void' was expected
+37: error: `first' not defined.
+47: error: `this' not defined.
+48: error: `next' not defined.
+48: error: used `INT' type value where BOOL is required
+51: error: incompatible types when assigning to type `CHAR_LIST_NODE' from type `CHAR_LIST'
+58: error: incompatible type for argument 0 of `set_next'
+58: note: expected `CHAR_LIST_NODE' but argument is of type `CHAR_LIST'
+program
+|-- class CHAR_LIST_NODE
+|   |-- attr private this:CHAR
+|   |-- attr private next:SAME
+|   |-- method create : SAME
+|   |   |-- arguments
+|   |   |   |-- first:STR
+|   |   |-- body
+|   |       |-- assign ret:CHAR_LIST_NODE
+|   |       |   |-- new  <CHAR_LIST_NODE>
+|   |       |-- if
+|   |       |   |-- condition
+|   |       |       |-- void <BOOL>
+|   |       |       |   |-- local first <STR>
+|   |       |       |-- body
+|   |       |           |-- return
+|   |       |               |-- local ret <CHAR_LIST_NODE>
+|   |       |-- typecase first
+|   |       |   |-- CHAR
+|   |       |   |   |-- assign
+|   |       |   |       |-- call this <CHAR>
+|   |       |   |       |   |-- caller
+|   |       |   |       |       |-- local ret <CHAR_LIST_NODE>
+|   |       |   |       |-- local first <CHAR>
+|   |       |   |-- STRING
+|   |       |       |-- assign
+|   |       |           |-- call this <CHAR>
+|   |       |           |   |-- caller
+|   |       |           |       |-- local ret <CHAR_LIST_NODE>
+|   |       |           |-- call char <CHAR>
+|   |       |               |-- caller
+|   |       |               |   |-- call str <STRING>
+|   |       |               |       |-- caller
+|   |       |               |           |-- local first <STR>
+|   |       |               |-- arguments
+|   |       |                   |-- literal INT 0 <INT>
+|   |       |-- return
+|   |           |-- local ret <CHAR_LIST_NODE>
+|   |-- method get_char
+|   |   |-- body
+|   |       |-- return
+|   |           |-- call this <CHAR>
+|   |               |-- caller
+|   |                   |-- self <CHAR_LIST_NODE>
+|   |-- method get_next : SAME
+|   |   |-- body
+|   |       |-- return
+|   |           |-- call next <SAME>
+|   |               |-- caller
+|   |                   |-- self <CHAR_LIST_NODE>
+|   |-- method set_next
+|       |-- arguments
+|       |   |-- next:CHAR_LIST_NODE
+|       |-- body
+|           |-- assign
+|               |-- call next <SAME>
+|               |   |-- caller
+|               |       |-- self <CHAR_LIST_NODE>
+|               |-- local next <CHAR_LIST_NODE>
+|-- class CHAR_LIST
+    |-- attr private first:CHAR_LIST_NODE
+    |-- method create : SAME
+    |   |-- body
+    |       |-- assign ret:CHAR_LIST
+    |       |   |-- new  <CHAR_LIST>
+    |       |-- assign
+    |       |   |-- call first <CHAR_LIST_NODE>
+    |       |   |   |-- caller
+    |       |   |       |-- local ret <CHAR_LIST>
+    |       |   |-- create CHAR_LIST_NODE <CHAR_LIST_NODE>
+    |       |       |-- literal STR "abc" <STRING>
+    |       |-- return
+    |           |-- local ret <CHAR_LIST>
+    |-- iterator next_char! : CHAR
+    |   |-- body
+    |       |-- assign aux:CHAR_LIST_NODE
+    |       |   |-- local first INVALID
+    |       |-- loop
+    |           |-- while
+    |           |   |-- unary ~ <BOOL>
+    |           |       |-- void <BOOL>
+    |           |           |-- local aux <CHAR_LIST_NODE>
+    |           |-- yield
+    |           |   |-- local aux <CHAR_LIST_NODE>
+    |           |-- assign
+    |               |-- local aux <CHAR_LIST_NODE>
+    |               |-- call get_next <CHAR_LIST_NODE>
+    |                   |-- caller
+    |                       |-- local aux <CHAR_LIST_NODE>
+    |-- method append_char
+        |-- arguments
+        |   |-- data:CHAR
+        |-- body
+            |-- assign block:CHAR_LIST
+            |   |-- create  <CHAR_LIST>
+            |-- assign
+            |   |-- call this INVALID
+            |   |   |-- caller
+            |   |       |-- local block <CHAR_LIST>
+            |   |-- local data <CHAR>
+            |-- assign
+            |   |-- call next INVALID
+            |   |   |-- caller
+            |   |       |-- local block <CHAR_LIST>
+            |   |-- or INVALID
+            |       |-- binary < <BOOL>
+            |       |   |-- literal INT 25 <INT>
+            |       |   |-- binary % <INT>
+            |       |       |-- binary * <INT>
+            |       |       |   |-- literal INT 55 <INT>
+            |       |       |   |-- literal INT 3 <INT>
+            |       |       |-- literal INT 37 <INT>
+            |       |-- literal INT 2 <INT>
+            |-- assign aux:CHAR_LIST_NODE
+            |   |-- call first <CHAR_LIST_NODE>
+            |       |-- caller
+            |           |-- self <CHAR_LIST>
+            |-- if
+            |   |-- condition
+            |       |-- void <BOOL>
+            |       |   |-- local aux <CHAR_LIST_NODE>
+            |       |-- body
+            |           |-- assign
+            |           |   |-- call first <CHAR_LIST_NODE>
+            |           |   |   |-- caller
+            |           |   |       |-- self <CHAR_LIST>
+            |           |   |-- local block <CHAR_LIST>
+            |           |-- return
+            |-- loop
+            |   |-- while
+            |   |   |-- unary ~ <BOOL>
+            |   |       |-- void <BOOL>
+            |   |           |-- call get_next <CHAR_LIST_NODE>
+            |   |               |-- caller
+            |   |                   |-- local aux <CHAR_LIST_NODE>
+            |   |-- assign
+            |       |-- local aux <CHAR_LIST_NODE>
+            |       |-- call get_next <CHAR_LIST_NODE>
+            |           |-- caller
+            |               |-- local aux <CHAR_LIST_NODE>
+            |-- call set_next INVALID
+                |-- caller
+                |   |-- local aux <CHAR_LIST_NODE>
+                |-- arguments
+                    |-- local block <CHAR_LIST>

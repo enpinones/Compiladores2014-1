@@ -1,0 +1,69 @@
+15: error: `mod' not defined.
+36: error: incompatible types when assigning to type `A' from type `C'
+program
+|-- class A : B C
+|   |-- attr x:INT
+|   |-- method create : SAME
+|   |   |-- arguments
+|   |   |   |-- x:INT
+|   |   |-- body
+|   |       |-- assign ret:A
+|   |       |   |-- new <A>
+|   |       |-- assign
+|   |       |   |-- call x <INT>
+|   |       |   |   |-- caller
+|   |       |   |       |-- local ret <A>
+|   |       |   |-- local x <INT>
+|   |       |-- return
+|   |           |-- local ret <A>
+|   |-- include C
+|       |-- create --> crC
+|-- class B : C
+|   |-- attr private z:CHAR
+|   |-- method create : SAME
+|   |   |-- body
+|   |       |-- assign ret:B
+|   |       |   |-- new <B>
+|   |       |-- assign n:B
+|   |       |   |-- call crC <B>
+|   |       |       |-- caller
+|   |       |           |-- self <B>
+|   |       |-- assign
+|   |       |   |-- call z <CHAR>
+|   |       |   |   |-- caller
+|   |       |   |       |-- local ret <B>
+|   |       |   |-- binary % INVALID
+|   |       |       |-- literal CHAR 'k' <CHAR>
+|   |       |       |-- local n <B>
+|   |       |-- return
+|   |           |-- local ret <B>
+|   |-- include C
+|       |-- create --> crC
+|-- class C
+|   |-- attr d:INT
+|   |-- method create : SAME
+|       |-- body
+|           |-- assign ret:C
+|           |   |-- new <C>
+|           |-- assign
+|           |   |-- call d <INT>
+|           |   |   |-- caller
+|           |   |       |-- local ret <C>
+|           |   |-- literal INT 8 <INT>
+|           |-- return
+|               |-- local ret <C>
+|-- class ASSIGN_TEST
+    |-- method main
+        |-- body
+            |-- assign var1:A
+            |   |-- create A <A>
+            |       |-- literal INT 5 <INT>
+            |-- decl var2:C
+            |-- assign var3:B
+            |   |-- create B <B>
+            |-- assign
+            |   |-- local var1 <A>
+            |   |-- local var2 <C>
+            |-- assign
+                |-- local var2 <C>
+                |-- local var3 <B>

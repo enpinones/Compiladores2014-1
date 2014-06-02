@@ -27,6 +27,10 @@ public class Variable
     {
 	return this.type;
     }
+    public String getName()
+    {
+	return this.name;
+    }
     public void setOnce()
     {
 	this.isOnce = true;

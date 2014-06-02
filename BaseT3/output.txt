@@ -1,0 +1,43 @@
+program
+|-- class I_INTERVAL
+|   |-- attr start:INT
+|   |-- attr finish:INT
+|   |-- method create : SAME
+|   |   |-- arguments
+|   |   |   |-- start:INT
+|   |   |   |-- finish:INT
+|   |   |-- body
+|   |       |-- assign res:SAME
+|   |       |   |-- new <I_INTERVAL>
+|   |       |-- assign
+|   |       |   |-- call start <INT>
+|   |       |   |   |-- caller
+|   |       |   |       |-- local res <SAME>
+|   |       |   |-- local start <INT>
+|   |       |-- assign
+|   |       |   |-- call finish <INT>
+|   |       |   |   |-- caller
+|   |       |   |       |-- local res <SAME>
+|   |       |   |-- local finish <INT>
+|   |       |-- return
+|   |           |-- local res <SAME>
+|   |-- method size : INT
+|       |-- body
+|           |-- return
+|               |-- binary + <INT>
+|                   |-- binary - <INT>
+|                   |   |-- call finish <INT>
+|                   |   |   |-- caller
+|                   |   |       |-- self <I_INTERVAL>
+|                   |   |-- call start <INT>
+|                   |       |-- caller
+|                   |           |-- self <I_INTERVAL>
+|                   |-- literal INT 1 <INT>
+|-- class MAIN
+|   |-- method main
+|   |   |-- body
+|   |       |-- assign i:I_INTERVAL
+|   |       |   |-- create I_INTERVAL <I_INTERVAL>
+|   |       |       |-- literal INT 3 <INT>
+|   |       |       |-- literal INT 10 <INT>
+|   |       |-- assign

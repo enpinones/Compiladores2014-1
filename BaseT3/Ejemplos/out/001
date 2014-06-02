@@ -1,0 +1,50 @@
+program
+|-- class BINARY_OPS
+    |-- method private test : BOOL
+        |-- arguments
+        |   |-- x:INT
+        |-- body
+            |-- assign var1:INT
+            |   |-- binary - <INT>
+            |       |-- binary + <INT>
+            |       |   |-- literal INT 3 <INT>
+            |       |   |-- literal INT 5 <INT>
+            |       |-- binary % <INT>
+            |           |-- binary * <INT>
+            |           |   |-- local x <INT>
+            |           |   |-- literal INT 1298 <INT>
+            |           |-- literal INT 24 <INT>
+            |-- if
+                |-- condition
+                |   |-- unary ~ <BOOL>
+                |   |   |-- binary < <BOOL>
+                |   |       |-- local x <INT>
+                |   |       |-- literal INT 20 <INT>
+                |   |-- body
+                |       |-- return
+                |           |-- literal BOOL false <BOOL>
+                |-- condition
+                |   |-- binary = <BOOL>
+                |   |   |-- local x <INT>
+                |   |   |-- literal INT 12 <INT>
+                |   |-- body
+                |       |-- return
+                |           |-- literal BOOL true <BOOL>
+                |-- condition
+                    |-- or <BOOL>
+                    |   |-- unary ~ <BOOL>
+                    |   |   |-- binary = <BOOL>
+                    |   |       |-- binary / <INT>
+                    |   |       |   |-- local x <INT>
+                    |   |       |   |-- literal INT 3 <INT>
+                    |   |       |-- literal INT 1 <INT>
+                    |   |-- binary < <BOOL>
+                    |       |-- binary * <INT>
+                    |       |   |-- local x <INT>
+                    |       |   |-- local x <INT>
+                    |       |-- binary + <INT>
+                    |           |-- literal INT 10 <INT>
+                    |           |-- local x <INT>
+                    |-- body
+                        |-- return
+                            |-- literal BOOL true <BOOL>

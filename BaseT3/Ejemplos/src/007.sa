@@ -1,0 +1,28 @@
+class PAR_ERRORS is
+   private attr a:INT;
+   
+   method(a:CHAR) is
+      typecase a
+      when CHAR then
+	 #OUT + a.str;
+      else
+	 #OUT + "???";
+      end;
+   end;
+	       
+   sec_method is
+      self.method(2);
+      self.method('\23', "string");
+      self.method;
+   end;
+end;
+
+class MAIN is
+   main is
+      var ::= #PAR_ERRORS;
+      if var.a < 5236479 then
+	 #OUT + "error";
+      end;
+   end;
+end
+      

@@ -1,0 +1,16 @@
+class FIRST_ERROR is
+   main is
+      var::=var2;
+      var2::=55;
+      if var < var2 then
+	 #OUT + "menor";
+      end;
+
+      loop
+	 while!(var2 < 200);
+	 #OUT + var2;
+	 var2 := var2 + 1;
+      end;
+      self.not_defined(var2);
+   end;
+end
