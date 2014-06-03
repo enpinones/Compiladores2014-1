@@ -1,6 +1,8 @@
 package analysis.ASTNode;
 import analysis.*;
+import analysis.symtable.Method;
 import analysis.symtable.MethodScope;
+import analysis.symtable.VarScope;
 import analysis.symtable.Variable;
 public class CallNode extends Node
 {
@@ -34,6 +36,15 @@ public class CallNode extends Node
 				//Si tiene devolvemos
 				return var.type;
 			}
+			//Además revisamos sies una llamada a metodo
+			MethodScope ms2 = ms.getSclass().methods.get(id);
+			if(ms2 != null)
+			{
+				Method met = ms2.method;
+				if(met != null)
+					return met.GetRetType();
+			}
+			
 		}
 		//Sino buscamos en el scope mismo
 		importantNode = this;
@@ -48,6 +59,24 @@ public class CallNode extends Node
 				return var.type;
 			}
 		}
+		//Buscamos para casos especiales
+		importantNode = this;
+		if(importantNode.rightBrotherp())
+		{
+			importantNode = importantNode.rightBrother();
+			MethodScope ms = null;
+			if(importantNode.getScope() != null && importantNode.getScope().getParent() != null)
+				ms = (MethodScope) importantNode.getScope().getParent();
+			if(importantNode instanceof LiteralNode)
+			{
+				LiteralNode ln = (LiteralNode)importantNode;
+				//Actualizamos scope
+				Variable var = new Variable(id, ln.GetType(), false, false);
+				ms.getSclass().attrs.put(id, var);
+				return ln.GetType();
+			}
+		}
+		
 		
 		return "INVALID";
 	}
