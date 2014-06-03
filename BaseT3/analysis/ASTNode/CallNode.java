@@ -65,7 +65,7 @@ public class CallNode extends Node
 		{
 			importantNode = importantNode.rightBrother();
 			MethodScope ms = null;
-			if(importantNode.getScope() != null && importantNode.getScope().getParent() != null)
+			if(importantNode.getScope() != null && importantNode.getScope().getParent() != null && importantNode.getScope().getParent() instanceof MethodScope)
 				ms = (MethodScope) importantNode.getScope().getParent();
 			if(importantNode instanceof LiteralNode)
 			{
