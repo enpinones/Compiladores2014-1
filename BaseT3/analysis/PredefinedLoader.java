@@ -1,5 +1,3 @@
-package analysis;
-
 public class PredefinedLoader
 {
     /*

@@ -16,10 +16,6 @@ public class LiteralNode extends Node
 
     public String toString()
     {
-	return "literal "+type+" "+value+" <"+type+">";
-    }
-    public String GetType()
-    {
-    	return type;
+	return "literal "+type+" "+value;
     }
 }
