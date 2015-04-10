@@ -5,8 +5,6 @@ import analysis.symtable.*;
 
 public class Executor
 {
-	
-	
     public void scan(String fname)
     {
 	try {
@@ -14,7 +12,6 @@ public class Executor
 	    Reader r = new FileReader(f);
 	    Scanner s = new Scanner(r);
 	    int value;
-	    
 
 	    while((value = s.yylex()) != Parser.EOF) {
 		if (value == Parser.CHAR) {

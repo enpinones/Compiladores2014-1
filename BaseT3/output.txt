@@ -1,63 +1,104 @@
-error: `x' not defined.
 program
-|-- class TEST_CHAR
+|-- class FUNCTION_DEFS
+|   |-- attr y:INT
+|   |-- method fun1
+|   |   |-- body
+|   |       |-- binary + <OUT>
+|   |           |-- create OUT <OUT>
+|   |           |-- literal STR "output" <STRING>
+|   |-- method fun4 : INT
+|   |   |-- body
+|   |       |-- return
+|   |           |-- literal INT 4 <INT>
+|   |-- method fun3
+|   |   |-- arguments
+|   |   |   |-- x:INT
+|   |   |-- body
+|   |       |-- binary + <OUT>
+|   |       |   |-- create OUT <OUT>
+|   |       |   |-- local x <INT>
+|   |       |-- return
+|   |           |-- literal INT 5 <INT>
+|   |-- method private fun2 : BOOL
+|   |   |-- arguments
+|   |   |   |-- x:INT
+|   |   |   |-- y:STR
+|   |   |-- body
+|   |       |-- if
+|   |       |   |-- condition
+|   |       |   |   |-- binary > <BOOL>
+|   |       |   |   |   |-- call length INVALID
+|   |       |   |   |   |   |-- caller <BOOL>
+|   |       |   |   |   |       |-- local y <STR>
+|   |       |   |   |   |-- local x <INT>
+|   |       |   |   |-- body
+|   |       |   |       |-- return
+|   |       |   |           |-- literal BOOL false <BOOL>
+|   |       |   |-- condition
+|   |       |       |-- binary < <BOOL>
+|   |       |       |   |-- local x <INT>
+|   |       |       |   |-- literal INT 57 <INT>
+|   |       |       |-- body
+|   |       |           |-- return
+|   |       |               |-- literal BOOL true <BOOL>
+|   |       |-- return
+|   |           |-- literal INT 0 <INT>
+|   |-- method fun5 : STR
+|   |   |-- arguments
+|   |   |   |-- x:OB
+|   |   |-- body
+|   |       |-- typecase x
+|   |           |-- INT
+|   |           |   |-- return
+|   |           |       |-- literal INT 10 <INT>
+|   |           |-- CHAR
+|   |           |   |-- return
+|   |           |       |-- literal CHAR 'n' <CHAR>
+|   |           |-- STRING
+|   |               |-- return
+|   |                   |-- literal STR "string" <STRING>
+|   |-- method create
+|   |   |-- body
+|   |       |-- assign var1:FUNCTION_DEFS
+|   |       |   |-- new <FUNCTION_DEFS>
+|   |       |-- return
+|   |           |-- local var1 <FUNCTION_DEFS>
+|   |-- include STR
+|   |-- include IN
+|-- class FUNCTION_CALLS
     |-- method main : INT
     |   |-- body
-    |       |-- assign var1:INT
-    |       |   |-- literal INT 83 <INT>
-    |       |-- typecase var1
-    |       |   |-- INT
-    |       |   |   |-- binary + <OUT>
-    |       |   |       |-- create OUT <OUT>
-    |       |   |       |-- call get_char <CHAR>
-    |       |   |           |-- caller
-    |       |   |           |   |-- self <TEST_CHAR>
-    |       |   |           |-- arguments
-    |       |   |               |-- local x INVALID
-    |       |   |-- STR
-    |       |   |   |-- binary + <OUT>
-    |       |   |       |-- create OUT <OUT>
-    |       |   |       |-- local var1 <INT>
-    |       |   |-- CHAR
-    |       |   |   |-- binary + <OUT>
-    |       |   |       |-- create OUT <OUT>
-    |       |   |       |-- local var1 <INT>
-    |       |   |-- BOOL
-    |       |       |-- if
-    |       |           |-- condition
-    |       |           |   |-- literal STR "true" <STRING>
-    |       |           |   |-- body
-    |       |           |       |-- binary + <OUT>
-    |       |           |           |-- binary + <OUT>
-    |       |           |           |   |-- create OUT <OUT>
-    |       |           |           |   |-- literal STR "bool: " <STRING>
-    |       |           |           |-- local var1 <INT>
-    |       |           |-- else
-    |       |               |-- binary + <OUT>
-    |       |                   |-- create OUT <OUT>
-    |       |                   |-- literal STR "false" <STRING>
-    |       |-- return
-    |           |-- literal INT 0 <INT>
-    |-- method get_char : CHAR
-    |   |-- arguments
-    |   |   |-- var1:INT
-    |   |-- body
+    |       |-- assign var1:FUNCTION_DEFS
+    |       |   |-- create FUNCTION_DEFS <FUNCTION_DEFS>
+    |       |-- assign y:INT
+    |       |   |-- literal INT 0 <INT>
+    |       |-- call fun1 INVALID
+    |       |   |-- caller
+    |       |       |-- local x INVALID
+    |       |-- assign
+    |       |   |-- local y <INT>
+    |       |   |-- call fun2 INVALID
+    |       |       |-- caller
+    |       |           |-- local x INVALID
+    |       |-- assign z:BOOL
+    |       |   |-- literal BOOL false <BOOL>
+    |       |-- call fun3 INVALID
+    |       |   |-- caller
+    |       |   |   |-- local x INVALID
+    |       |   |-- arguments
+    |       |       |-- literal INT 144 <INT>
     |       |-- if
     |           |-- condition
-    |           |   |-- binary = <BOOL>
-    |           |   |   |-- local var1 <INT>
-    |           |   |   |-- literal INT 35 <INT>
+    |           |   |-- call fun4 INVALID
+    |           |   |   |-- caller
+    |           |   |   |   |-- local x INVALID
+    |           |   |   |-- arguments
+    |           |   |       |-- literal INT 10 <INT>
+    |           |   |       |-- literal STR "un string" <STRING>
     |           |   |-- body
     |           |       |-- return
-    |           |           |-- literal CHAR '#' <CHAR>
-    |           |-- condition
-    |           |   |-- binary = <BOOL>
-    |           |   |   |-- local var1 <INT>
-    |           |   |   |-- literal INT 9 <INT>
-    |           |   |-- body
-    |           |       |-- return
-    |           |           |-- literal CHAR '	' <CHAR>
+    |           |           |-- literal INT 1 <INT>
     |           |-- else
     |               |-- return
-    |                   |-- literal CHAR 'e' <CHAR>
-    |-- include CHAR
+    |                   |-- literal INT 0 <INT>
+    |-- include FUNCTION_DEFS

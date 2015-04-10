@@ -45,8 +45,4 @@ public class Method
     {
     	return sclass;
     }
-    public String GetRetType()
-    {
-    	return retType;
-    }
 }

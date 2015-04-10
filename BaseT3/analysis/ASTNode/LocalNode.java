@@ -94,8 +94,6 @@ public class LocalNode extends Node
 				return binNode.GetOperatorType();	
 			}
 		}
-		errors.add("error: `"+id+"' not defined.");
-		
 		return "INVALID";	
 	}
 
