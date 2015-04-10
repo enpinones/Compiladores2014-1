@@ -1,0 +1,17 @@
+0(0,0):keyword:class
+6(0,6):uppercase_identifier:INCLUDE_TEST
+19(0,19):symbol:<
+21(0,21):uppercase_identifier:STR
+25(0,25):keyword:is
+31(1,3):keyword:include
+39(1,11):uppercase_identifier:INT
+42(1,14):symbol:;
+48(3,3):identifier:main
+52(3,7):symbol::
+53(3,8):uppercase_identifier:INT
+57(3,12):keyword:is
+66(4,6):keyword:return
+73(4,13):integer:-732871382
+83(4,23):symbol:;
+88(5,3):keyword:end
+92(6,0):keyword:end

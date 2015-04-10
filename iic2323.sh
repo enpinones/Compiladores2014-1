@@ -13,7 +13,7 @@ function compile {
 # COMPLETAR.
 # 
 
- make
+# make
 
 }
 
@@ -27,7 +27,7 @@ OUT=$2
 # COMPLETAR.
 #
 
- java Main $IN > $OUT
+# java Main $IN > $OUT
 
 }
 

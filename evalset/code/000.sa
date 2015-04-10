@@ -1,0 +1,4 @@
+class POINT is
+   attr x:INT;
+   attr y:INT;
+end

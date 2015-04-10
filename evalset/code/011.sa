@@ -1,0 +1,31 @@
+-- mas iterators
+
+class BINARY_TREE{T} is
+   attr left,right: SAME; -- subtrees
+   attr data: T;
+   elt!: T
+   is
+      if void(self) then quit end;
+      yield data;
+      loop yield left.elt! end; -- yield data in the left subtree.
+      loop yield right.elt! end;
+   end; -- elt!
+end; -- class BINARY_TREE
+
+
+class MAIN is
+   main is
+      x:BINARY_TREE{INT} := make_tree();
+      loop
+	 #OUT + x.elt;
+      end
+   end
+
+   range!(once min, once max:INT):INT is 
+      i:INT := min;
+      loop until!(i > max);
+	 yield i
+	       i := i + 1;
+      end;
+   end;
+end

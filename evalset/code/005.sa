@@ -1,0 +1,10 @@
+class TEST_TYPECASE is
+   main:INT is
+      x:INT:=83;
+
+      typecase x
+      when INT then x := x + 25;
+      when STR then #OUT + "string";
+      end
+   end
+end

@@ -1,0 +1,11 @@
+class ERROR is
+   data:INT;
+
+   create(val:INT):ERROR is
+      ret:SAME:= new;
+      ret.data = val;
+      año::=2000;
+      if año > 1000 then ret.data:= ret.data * 13; end
+      return ret;
+   end
+end

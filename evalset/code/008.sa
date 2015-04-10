@@ -1,0 +1,9 @@
+class BINARY_OPS is
+   private test(x:INT):BOOL is
+      y::= 3+5-(x*1298)%24;
+      if x >= 20 then return false 
+      elsif x /= 12 then return true
+      elsif x/3 > 1 or x*x < 10+x then return true
+      end
+   end
+end

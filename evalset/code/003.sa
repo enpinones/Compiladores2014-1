@@ -1,0 +1,28 @@
+class POINT is
+   attr x:INT;
+   attr y:INT;
+   
+   create(xval, yval:INT):POINT is
+      res:POINT:=new;
+      res.x := xval;
+      res.y := yval;
+   end
+
+   equals(other:POINT) is
+      if void(other) then return false
+      elsif self.x = other.x and self.y = other.y then return true;
+      else return false;
+   end
+end
+
+
+class LINE is
+   attr p1:POINT;
+   attr p2:POINT;
+
+   create(p1, p2:POINT):LINE is
+      res:LINE:=new;
+      res.p1 := p1;
+      res.p2 := p2;
+   end
+end
