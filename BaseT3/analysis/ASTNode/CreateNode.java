@@ -15,9 +15,4 @@ public class CreateNode extends Node
     {
 	return "create "+type+ " <"+type+">";
     }
-    
-    public String getType()
-    {
-    	return type;
-    }
 }

@@ -1,28 +1,18 @@
 package analysis;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class Node {
     private Node leftChild;
     private Node rightBrother;
     private Node parent;
     private Node scope;
-    private List <String> errors;
-    
     public Node()
     {
 	this.leftChild = null;
 	this.rightBrother = null;
 	this.parent = null;
 	this.scope = null;
-	this.errors = new ArrayList<String>();
     }
 
-    public List<String> getErrors()
-    {
-    	return errors;
-    }
     public void setRightBrother(Node r)
     {
 	this.rightBrother = r;

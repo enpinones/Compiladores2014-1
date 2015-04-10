@@ -1,104 +1,43 @@
 program
-|-- class FUNCTION_DEFS
-|   |-- attr y:INT
-|   |-- method fun1
-|   |   |-- body
-|   |       |-- binary + <OUT>
-|   |           |-- create OUT <OUT>
-|   |           |-- literal STR "output" <STRING>
-|   |-- method fun4 : INT
-|   |   |-- body
-|   |       |-- return
-|   |           |-- literal INT 4 <INT>
-|   |-- method fun3
+|-- class I_INTERVAL
+|   |-- attr start:INT
+|   |-- attr finish:INT
+|   |-- method create : SAME
 |   |   |-- arguments
-|   |   |   |-- x:INT
+|   |   |   |-- start:INT
+|   |   |   |-- finish:INT
 |   |   |-- body
-|   |       |-- binary + <OUT>
-|   |       |   |-- create OUT <OUT>
-|   |       |   |-- local x <INT>
+|   |       |-- assign res:SAME
+|   |       |   |-- new <I_INTERVAL>
+|   |       |-- assign
+|   |       |   |-- call start <INT>
+|   |       |   |   |-- caller
+|   |       |   |       |-- local res <SAME>
+|   |       |   |-- local start <INT>
+|   |       |-- assign
+|   |       |   |-- call finish <INT>
+|   |       |   |   |-- caller
+|   |       |   |       |-- local res <SAME>
+|   |       |   |-- local finish <INT>
 |   |       |-- return
-|   |           |-- literal INT 5 <INT>
-|   |-- method private fun2 : BOOL
-|   |   |-- arguments
-|   |   |   |-- x:INT
-|   |   |   |-- y:STR
+|   |           |-- local res <SAME>
+|   |-- method size : INT
+|       |-- body
+|           |-- return
+|               |-- binary + <INT>
+|                   |-- binary - <INT>
+|                   |   |-- call finish <INT>
+|                   |   |   |-- caller
+|                   |   |       |-- self <I_INTERVAL>
+|                   |   |-- call start <INT>
+|                   |       |-- caller
+|                   |           |-- self <I_INTERVAL>
+|                   |-- literal INT 1 <INT>
+|-- class MAIN
+|   |-- method main
 |   |   |-- body
-|   |       |-- if
-|   |       |   |-- condition
-|   |       |   |   |-- binary > <BOOL>
-|   |       |   |   |   |-- call length INVALID
-|   |       |   |   |   |   |-- caller <BOOL>
-|   |       |   |   |   |       |-- local y <STR>
-|   |       |   |   |   |-- local x <INT>
-|   |       |   |   |-- body
-|   |       |   |       |-- return
-|   |       |   |           |-- literal BOOL false <BOOL>
-|   |       |   |-- condition
-|   |       |       |-- binary < <BOOL>
-|   |       |       |   |-- local x <INT>
-|   |       |       |   |-- literal INT 57 <INT>
-|   |       |       |-- body
-|   |       |           |-- return
-|   |       |               |-- literal BOOL true <BOOL>
-|   |       |-- return
-|   |           |-- literal INT 0 <INT>
-|   |-- method fun5 : STR
-|   |   |-- arguments
-|   |   |   |-- x:OB
-|   |   |-- body
-|   |       |-- typecase x
-|   |           |-- INT
-|   |           |   |-- return
-|   |           |       |-- literal INT 10 <INT>
-|   |           |-- CHAR
-|   |           |   |-- return
-|   |           |       |-- literal CHAR 'n' <CHAR>
-|   |           |-- STRING
-|   |               |-- return
-|   |                   |-- literal STR "string" <STRING>
-|   |-- method create
-|   |   |-- body
-|   |       |-- assign var1:FUNCTION_DEFS
-|   |       |   |-- new <FUNCTION_DEFS>
-|   |       |-- return
-|   |           |-- local var1 <FUNCTION_DEFS>
-|   |-- include STR
-|   |-- include IN
-|-- class FUNCTION_CALLS
-    |-- method main : INT
-    |   |-- body
-    |       |-- assign var1:FUNCTION_DEFS
-    |       |   |-- create FUNCTION_DEFS <FUNCTION_DEFS>
-    |       |-- assign y:INT
-    |       |   |-- literal INT 0 <INT>
-    |       |-- call fun1 INVALID
-    |       |   |-- caller
-    |       |       |-- local x INVALID
-    |       |-- assign
-    |       |   |-- local y <INT>
-    |       |   |-- call fun2 INVALID
-    |       |       |-- caller
-    |       |           |-- local x INVALID
-    |       |-- assign z:BOOL
-    |       |   |-- literal BOOL false <BOOL>
-    |       |-- call fun3 INVALID
-    |       |   |-- caller
-    |       |   |   |-- local x INVALID
-    |       |   |-- arguments
-    |       |       |-- literal INT 144 <INT>
-    |       |-- if
-    |           |-- condition
-    |           |   |-- call fun4 INVALID
-    |           |   |   |-- caller
-    |           |   |   |   |-- local x INVALID
-    |           |   |   |-- arguments
-    |           |   |       |-- literal INT 10 <INT>
-    |           |   |       |-- literal STR "un string" <STRING>
-    |           |   |-- body
-    |           |       |-- return
-    |           |           |-- literal INT 1 <INT>
-    |           |-- else
-    |               |-- return
-    |                   |-- literal INT 0 <INT>
-    |-- include FUNCTION_DEFS
+|   |       |-- assign i:I_INTERVAL
+|   |       |   |-- create I_INTERVAL <I_INTERVAL>
+|   |       |       |-- literal INT 3 <INT>
+|   |       |       |-- literal INT 10 <INT>
+|   |       |-- assign

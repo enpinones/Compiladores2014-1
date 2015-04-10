@@ -25,24 +25,7 @@ public class BinaryNode extends Node
     
     public String GetOperatorType()
     {
-    	//Buscamos la operación más pequeña que no sea bool y que sea create o literal (que sea hija)
-    	Node importantNode = this;
-    	while(importantNode.leftChild() != null)
-    	{
-    		importantNode=importantNode.leftChild();
-//    		if(importantNode instanceof LiteralNode)
-//    		{
-//    			LiteralNode ln = (LiteralNode)importantNode;
-//    			return ln.GetType();
-//    		}
-    		if(importantNode instanceof CreateNode)
-    		{
-    			CreateNode cn = (CreateNode)importantNode;
-    			return cn.getType();
-    		}
     	
-    		
-    	}
 		if(intOperators.contains(op))
 		{
 			return "INT";
@@ -53,7 +36,7 @@ public class BinaryNode extends Node
 		}
 		else
 		{
-			return "INVALID";
+			return "MISSING :C";
 		}
     }
 }

@@ -16,13 +16,10 @@ public class UnaryNode extends Node
 
     public String toString()
     {
-    	String opType = GetType();
-    	if(opType.equals("INVALID"))
-    		return "unary "+op+" "+opType;
-    	return "unary "+op+" <"+opType+">";
+    	return "unary "+op+" <"+GetOperatorType()+">";
     }
     
-    public String GetType()
+    public String GetOperatorType()
     {
     	
 		if(boolOperators.contains(op))
@@ -31,7 +28,7 @@ public class UnaryNode extends Node
 		}
 		else
 		{
-			return "INVALID";
+			return "MISSING :C";
 		}
     }
     
